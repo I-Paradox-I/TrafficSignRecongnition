@@ -1,5 +1,6 @@
 import cv2
 import glob
+import numpy as np
 from skimage.feature import hog
 from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
@@ -8,6 +9,11 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from skimage.feature import local_binary_pattern
+from skimage.color import rgb2hsv
+from skimage.measure import regionprops
 
 # T1 start ________________________________________________________________
 # Read Dataset
@@ -37,9 +43,11 @@ for x in X:
     temp_x = cv2.resize(x, (48, 48))
     # Convert 'temp_x' to grayscale
     temp_x = cv2.cvtColor(temp_x, cv2.COLOR_BGR2GRAY)
-    # Apply additional preprocessing techniques (e.g., Gaussian blur, color space conversion) here if desired
+    # Apply additional preprocessing techniques (e.g., Gaussian blur, histogram equalization) here if desired
     temp_x = cv2.GaussianBlur(temp_x, (3, 3), 0)
-    # temp_x = cv2.cvtColor(temp_x, cv2.COLOR_BGR2HSV)
+    temp_x = cv2.equalizeHist(temp_x)
+    # Normalize the pixel values of the image
+    temp_x = temp_x.astype(np.float32) / 255.0
     # Append the preprocessed image to 'X_processed'
     X_processed.append(temp_x)
 
@@ -49,12 +57,35 @@ for x in X:
 # T3 start ________________________________________________________________
 # Feature extraction
 X_features = []
-for x in X_processed:
+for x, x_processed in zip(X, X_processed):
     # Apply different feature extraction methods here
     # Example: Histogram of Oriented Gradients (HOG)
-    x_feature = hog(x, orientations=8, pixels_per_cell=(10, 10),
-                    cells_per_block=(1, 1), visualize=False, multichannel=False)
-    X_features.append(x_feature)
+    hog_feature = hog(x_processed, orientations=8, pixels_per_cell=(10, 10),
+                      cells_per_block=(1, 1), visualize=False, multichannel=False)
+
+    # Color distribution features (HSV color space)
+    hsv_image = rgb2hsv(x)  # Convert image to HSV color space
+    hue_hist = np.histogram(hsv_image[:, :, 0], bins=8, range=(0, 1))[0]  # Hue histogram
+    saturation_hist = np.histogram(hsv_image[:, :, 1], bins=8, range=(0, 1))[0]  # Saturation histogram
+    value_hist = np.histogram(hsv_image[:, :, 2], bins=8, range=(0, 1))[0]  # Value histogram
+
+    # Shape features
+    label_img = np.uint8(x_processed > 0)  # Convert image to binary label image
+    props = regionprops(label_img)[0]  # Calculate region properties
+    area = props.area  # Area of the region
+    perimeter = props.perimeter  # Perimeter of the region
+    eccentricity = props.eccentricity  # Eccentricity of the region
+
+    # Concatenate all features into a single feature vector
+    x_features = np.concatenate((hog_feature, hue_hist, saturation_hist, value_hist, [area, perimeter, eccentricity]))
+
+    X_features.append(x_features)
+
+
+# Apply dimensionality reduction using PCA
+pca = PCA(n_components=100)  # Adjust the number of components as needed
+X_features = pca.fit_transform(X_features)
+
 
 # Split training and testing sets using sklearn.model_selection.train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X_features, y, test_size=0.2, random_state=42)
@@ -74,11 +105,16 @@ models = [
 ]
 
 for model in models:
+    # Scale the features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+
     # Train the model
-    model.fit(X_train, y_train)
+    model.fit(X_train_scaled, y_train)
 
     # Evaluate the model
-    accuracy = model.score(X_test, y_test)
+    accuracy = model.score(X_test_scaled, y_test)
     print(f"Model: {model.__class__.__name__}, Accuracy: {accuracy}")
 
 # T4 end _________________________________________________________________
