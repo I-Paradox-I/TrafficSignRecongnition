@@ -9,7 +9,7 @@ from sklearn.svm import SVC
 # Read in Dataset
 
 # change the dataset path here according to your folder structure
-dataset_path = "C:\\Users\\18340\\Desktop\\Mine\\Study\\Projects\\NUS_Summer_camp\\VisualComputing\\TrafficSignRecognition\\Datasets_1\\images\\"
+dataset_path = "C:\\Users\\18340\\Desktop\\Mine\\Study\\Projects\\NUS_Summer_camp\\VisualComputing\\TrafficSignRecognition\\Dataset_1\\images\\"
 
 X = []
 y = []
