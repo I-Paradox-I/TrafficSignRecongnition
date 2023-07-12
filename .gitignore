@@ -3,3 +3,9 @@ Dataset_1.zip
 Dataset_2/*
 Dataset_2.zip
 Reference/
+wandb/
+Bonus/wandb/
+Bonus/checkpoints/
+Bonus/__pycache__/
+Bonus/nets/__pycache__/
+Bonus/tempCodeRunnerFile.bat

@@ -10,6 +10,7 @@ class MyDataset(Dataset):
         self.csv_file = csv_file
         self.transform = transform
         self.data = []
+        self.classes = []
 
         with open(csv_file, 'r') as file:
             csv_reader = csv.DictReader(file)
@@ -19,6 +20,8 @@ class MyDataset(Dataset):
                 class_id = int(row['ClassId'])
 
                 self.data.append((image_path, x1, y1, x2, y2, class_id))
+                if class_id not in self.classes:
+                    self.classes.append(class_id)
 
     def __len__(self):
         return len(self.data)

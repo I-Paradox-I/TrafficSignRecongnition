@@ -1,0 +1,2 @@
+Epoch 1/10 - Train Loss: 1.1819 - Train Accuracy: 0.6469
+Test Accuracy: 0.7057  - Test F1-score (macro): 0.5977
