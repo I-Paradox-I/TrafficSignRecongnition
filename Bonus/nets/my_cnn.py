@@ -61,27 +61,18 @@ class CNN(nn.Module):  # 从父类 nn.Module 继承
 
 
     def forward(self, x):  # 正向传播
-        # print(f"Input tensor device: {x.device}")
-        # print(f"Conv1 weight tensor device: {self.conv1.weight.device}")
-        # print(f"Conv1 bias tensor device: {self.conv1.bias.device}")
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
         x = self.maxpool(x)
         x = self.res1(x)
       
-        # print(f"Input tensor device: {x.device}")
-        # print(f"Conv2 weight tensor device: {self.conv2.weight.device}")
-        # print(f"Conv2 bias tensor device: {self.conv2.bias.device}")
         x = self.conv2(x)
         x = self.bn2(x)
         x = self.relu(x)
         x = self.maxpool(x)
         x = self.res2(x)
 
-        # print(f"Input tensor device: {x.device}")
-        # print(f"Conv3 weight tensor device: {self.conv3.weight.device}")
-        # print(f"Conv3 bias tensor device: {self.conv3.bias.device}")
         x = self.conv3(x)
         x = self.bn3(x)
         x = self.relu(x)
