@@ -32,9 +32,9 @@ class ResidualBlock(torch.nn.Module):
         return nn.ReLU()(x + y)
 
 
-class CNN(nn.Module):  # 从父类 nn.Module 继承
+class MY_NET(nn.Module):  # 从父类 nn.Module 继承
     def __init__(self):
-        super(CNN, self).__init__()
+        super(MY_NET, self).__init__()
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=64, kernel_size=3, stride=1, padding=1)
         torch.nn.init.xavier_normal_(self.conv1.weight)
         self.bn1 = nn.BatchNorm2d(64)

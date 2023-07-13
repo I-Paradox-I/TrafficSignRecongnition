@@ -5,7 +5,7 @@ Dataset_2.zip
 Reference/
 wandb/
 Bonus/wandb/
-Bonus/checkpoints/
+Bonus/checkpoints/*
 Bonus/__pycache__/
 Bonus/nets/__pycache__/
 Bonus/tempCodeRunnerFile.bat
