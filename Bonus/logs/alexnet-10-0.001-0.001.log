@@ -1,0 +1,21 @@
+Epoch 1/10 - Train Loss: 1.5633 - Train Accuracy: 0.5560
+Test Accuracy: 0.9057  - Test F1-score (macro): 0.8745
+Epoch 2/10 - Train Loss: 0.1569 - Train Accuracy: 0.9513
+Test Accuracy: 0.9750  - Test F1-score (macro): 0.9618
+Epoch 3/10 - Train Loss: 0.0809 - Train Accuracy: 0.9767
+Test Accuracy: 0.9625  - Test F1-score (macro): 0.9491
+Epoch 4/10 - Train Loss: 0.0713 - Train Accuracy: 0.9790
+Test Accuracy: 0.9717  - Test F1-score (macro): 0.9508
+Epoch 5/10 - Train Loss: 0.0541 - Train Accuracy: 0.9846
+Test Accuracy: 0.9703  - Test F1-score (macro): 0.9564
+Epoch 6/10 - Train Loss: 0.0647 - Train Accuracy: 0.9817
+Test Accuracy: 0.9679  - Test F1-score (macro): 0.9402
+Epoch 7/10 - Train Loss: 0.0588 - Train Accuracy: 0.9832
+Test Accuracy: 0.9773  - Test F1-score (macro): 0.9571
+Epoch 8/10 - Train Loss: 0.0480 - Train Accuracy: 0.9862
+Test Accuracy: 0.9794  - Test F1-score (macro): 0.9647
+Epoch 9/10 - Train Loss: 0.0443 - Train Accuracy: 0.9876
+Test Accuracy: 0.9745  - Test F1-score (macro): 0.9619
+Epoch 10/10 - Train Loss: 0.0635 - Train Accuracy: 0.9832
+Test Accuracy: 0.9854  - Test F1-score (macro): 0.9748
+Best Model Accuracy: 0.9854 - Best Model F1-score (macro): 0.9748
