@@ -18,7 +18,7 @@ parser.add_argument('--epoch', type=int, default=10, help='Number of epochs')
 parser.add_argument('--lr', type=float, default=0.001, help='Learning rate for optimizer')
 parser.add_argument('--weight_decay', type=float, default=0.001, help='Weight decay for optimizer')
 parser.add_argument('--batch_size', type=int, default=128, help='Batch size')
-parser.add_argument('--model', type=str, default='resnet18', choices=['lenet', 'resnet18', 'vgg16', 'alexnet', 'squeezenet1_0', 'my_net'], help='Model architecture')
+parser.add_argument('--model', type=str, default='resnet18', choices=['lenet', 'resnet18', 'vgg16', 'alexnet', 'squeezenet1_0', 'vit_b_16', 'my_net'], help='Model architecture')
 args = parser.parse_args()
 
 # Initialize WandB
@@ -52,6 +52,8 @@ elif args.model == 'alexnet':
     model = models.alexnet(pretrained=True)
 elif args.model == 'squeezenet1_0':
     model = models.squeezenet1_0(pretrained=True)
+elif args.model == 'vit_b_16':
+    model = models.vit_b_16(pretrained=True)
 elif args.model == 'my_net':
     model = MY_NET()
 

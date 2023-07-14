@@ -1,12 +1,13 @@
 #!/bin/bash
 # Define the hyperparameters
 epoch=10
-lr=0.001
+lr=0.0001
 weight_decay=0.001
-batch_size=128
+batch_size=64
 
 # Define the model architectures
-models=("lenet" "resnet18" "vgg16" "alexnet" "squeezenet1_0" "my_net")
+# models=("lenet" "resnet18" "vgg16" "alexnet" "squeezenet1_0" "vit_b_16" "my_net")
+models=("vit_b_16")
 
 # Train and test each model
 for model in "${models[@]}"
