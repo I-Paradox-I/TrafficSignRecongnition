@@ -11,6 +11,11 @@ from nets.my_net import MY_NET
 from tqdm import tqdm
 import wandb
 import numpy as np
+import os
+
+current_file_path = os.path.abspath(__file__)
+current_directory = os.path.dirname(current_file_path)
+parent_directory = os.path.dirname(current_directory)
 
 # Parse command-line arguments
 parser = argparse.ArgumentParser()
@@ -35,8 +40,8 @@ transform = transforms.Compose([
 ])
 
 # Create datasets and dataloaders
-train_dataset = MyDataset(folder_path="Dataset_2/", csv_file="Dataset_2/Train.csv", transform=transform)
-test_dataset = MyDataset(folder_path="Dataset_2/", csv_file="Dataset_2/Test.csv", transform=transform)
+train_dataset = MyDataset(folder_path=parent_directory+"Dataset_2/", csv_file=parent_directory+"Dataset_2/Train.csv", transform=transform)
+test_dataset = MyDataset(folder_path=parent_directory+"Dataset_2/", csv_file=parent_directory+"Dataset_2/Test.csv", transform=transform)
 train_dataloader = torch.utils.data.DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True)
 test_dataloader = torch.utils.data.DataLoader(test_dataset, batch_size=args.batch_size, shuffle=True)
 
@@ -69,7 +74,7 @@ model.to(device)
 
 best_accuracy = 0.0  # Track the best accuracy
 best_f1_score = 0.0  # Track the best F1 score
-best_model_path = f"Bonus/checkpoints/{args.model}_epoch{args.epoch}_lr{args.lr}_wd{args.weight_decay}.pt"  # Name the best model checkpoint
+best_model_path = parent_directory+f"Bonus/checkpoints/{args.model}_epoch{args.epoch}_lr{args.lr}_wd{args.weight_decay}.pt"  # Name the best model checkpoint
 
 # Train the model
 num_epochs = args.epoch
