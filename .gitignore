@@ -9,4 +9,5 @@ Bonus/checkpoints/*
 Bonus/__pycache__/
 Bonus/nets/__pycache__/
 Bonus/tempCodeRunnerFile.bat
+Bonus/fail/
 .gitconfig

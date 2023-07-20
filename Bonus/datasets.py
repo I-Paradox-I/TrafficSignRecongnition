@@ -41,3 +41,8 @@ class MyDataset(Dataset):
 
         # 返回裁剪后的图像和对应的类别
         return cropped_image, class_id
+    
+    def get_original_image(self, index):
+        image_path, x1, y1, x2, y2, class_id = self.data[index]
+        image = Image.open(image_path)
+        return image
