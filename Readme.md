@@ -1,7 +1,7 @@
 # TrafficSignRecongnition
 Final Project for NUS Summer Camp
 
-** Please check the "Group 1 presentation_PPT-1.pdf" for more detailed introduction. 请查看文件列表中的ppt来更详细的查看这个项目。 **
+#### Please check the "Group 1 presentation_PPT-1.pdf" for more detailed introduction. 请查看文件列表中的ppt来更详细的查看这个项目。
 ### 文件结构介绍
 
 - train.py: 训练的核心文件，接受--epoch(默认10)， --weight_decay(默认0.001), --lr(默认0.001)， --batch_size(默认128) 作为超参数。
