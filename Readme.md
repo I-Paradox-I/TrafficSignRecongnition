@@ -1,7 +1,7 @@
 # TrafficSignRecongnition
 Final Project for NUS Summer Camp
 
-Please check the"Group 1 presentation_PPT-1.pdf" for more detailed introduction. 请查看文件列表中的ppt来更详细的查看这个项目。
+！！！！ Please check the"Group 1 presentation_PPT-1.pdf" for more detailed introduction. 请查看文件列表中的ppt来更详细的查看这个项目。
 
 ### 文件结构介绍
 
